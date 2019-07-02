@@ -3,7 +3,7 @@ import Error from './Error'
 
 function Pregunta (props){
 
-const {setPresupuesto, setPreguntaPresupuesto} = props;
+const {setPresupuesto, setPreguntaPresupuesto, setRestante} = props;
 
 const [cantidad, setCantidad] = useState(0);
 const [error, setError] = useState(false);
@@ -20,6 +20,7 @@ const agregarPresupuesto = (e)=>{
   }
   setError(false)
   setPresupuesto(cantidad)
+  setRestante(cantidad)
   setPreguntaPresupuesto(false)
 }
 

@@ -1,7 +1,10 @@
 import React,{useState} from 'react';
-import Error from './Error'
+import Error from './Error';
+import shortid from 'shortid'
 
 function Formulario(props){
+  
+const {setGasto, setCrearGasto}= props
 
 //state
 const [nombreGasto,setNombreGasto] = useState('');
@@ -19,7 +22,27 @@ const agregarGasto = e =>{
 
  }
 
+
+
   //pasar al componente
+
+  //contruir objeto de gasto
+  const gasto = {
+    nombreGasto,
+    cantidadGasto,
+    id: shortid.generate()
+
+  }
+
+  setGasto(gasto);
+  setCrearGasto(true)
+
+  //eliminar alerta
+  setError(false);
+
+  //resetear el Form
+  setNombreGasto('')
+  setCantiodadGasto('')
 
 
 }
@@ -36,6 +59,7 @@ const agregarGasto = e =>{
           className="u-full-width"
           placeholder="Ej. Transporte"
           onChange = {e=>setNombreGasto(e.target.value)}
+          value = {nombreGasto}
         />
       </div>
       <div>
@@ -45,6 +69,7 @@ const agregarGasto = e =>{
           className="u-full-width"
           placeholder="Ej. 300"
           onChange = {e=> setCantiodadGasto(parseInt(e.target.value, 10))}
+          value = {cantidadGasto}
         />
         <input type="submit" className="button-primary u-full-width " value="Agregar Gasto"/>
       </div>
